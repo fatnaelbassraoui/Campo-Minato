@@ -1,0 +1,256 @@
+:root {
+    --picker-color:rgba(255,245,243, 0.4);
+    --picker-background: linear-gradient(90deg, rgba(237,203,185,0.5) 0%, rgba(196,174,189,0.5) 100%);
+    --color:rgb(254,248,250);
+    --color-fieldset:rgb(254,248,250);
+    --fieldset-color:rgb(79,48,72);
+    --radio-color:rgb(254,248,250);
+    --background-image:  url('./images/animeBg.jpg');  
+    --cell-background:rgba(229,162,178,0.2);
+    --cell-dark-background:rgb(229,162,178);
+    --cell-bomb-background-color:rgba(217,182,184,0.9);
+    --endGame-background-color:#b17795;
+    --endGame-text:rgb(254,248,250);
+    --button-background:rgba(123, 14, 145, 0.2);
+    --button-border:rgb(254,248,250);
+    --button-color:rgb(254,248,250);
+    --end-game-text-win:rgba(101,59,87,0.5);
+    --button-hover:#e1a8bc;
+    --win-background:rgb(68, 28, 72);
+    --win-text:rgb(254,248,250);
+
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.body{
+    margin: 0;
+}
+
+.visually-hidden {
+    visibility: hidden;
+}
+.color-picker > fieldset {
+   border-color: 1px #FFEBEA;
+    display: flex;
+    gap: 2rem;
+    width: fit-content;
+    padding: 0.5rem 3rem;
+    margin-inline: auto;
+    border-radius: 1rem 1rem 1rem 1rem;
+    color: var(--color-fieldset);
+    font-size: 1.3rem;
+    background: var(--picker-background) ;
+}
+
+.color-picker input[type='radio']{
+    appearance:  none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px ;
+    border-radius: 50%;
+    outline: 3px solid var(--radio-color);
+    outline-offset: 2px ;
+    font-family: 'Merienda';
+    border-color: var(--radio-color);
+   
+}
+.color-picker input[type='radio']:checked{
+    background-color: var(--radio-color);
+}
+.color-picker input[type='radio']#anime {
+    --radio-color:#BB8196;
+}
+
+.color-picker input[type='radio']#violet {
+    --radio-color:#7D4C65;
+}
+
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contain{
+    margin-top: 0;
+    background-image: var(--background-image);
+  height: 100vh;
+  background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 69%;
+    
+}
+
+.game-container {
+    width: 40vw;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    z-index: 200;
+}
+
+/*Pannello Gioco*/
+h1 {
+    font-size: 40px;
+    color: var(--color);
+    font-family: 'Merienda';
+}
+
+.score {
+    width: 32vw;
+    font-size: 30px;
+    color:  var(--color);
+    display: flex;
+    justify-content:space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: 'Merienda';
+}
+
+/*Tabellone gioco*/
+
+.game-board {
+    width: 32vw;
+    position: relative;
+    margin-left: 10px;
+    
+}
+
+.grid {
+    height:75vh;
+    width: 34vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    
+}
+
+.cell {
+    height: 2.500em;
+    width: 2.500em;
+    cursor: pointer;
+    background-color:var(--cell-background);
+   
+}
+
+.cell:hover,
+.cell-clicked {
+    background-color: #583460;
+}
+
+.cell-clicked,
+.cell-bomb {
+    cursor: not-allowed;
+}
+
+.cell-dark {
+    background-color:  var(--cell-dark-background);
+}
+
+.cell-clicked {
+    /* background-color: rgb(157, 197, 199); */
+    background-color:  rgba(78,45,77,0.8);
+    background-size: contain;
+}
+
+.cell-bomb {
+    background-color: var(--cell-bomb-background-color);
+    background-image: url('images/bomb.png');
+    background-size: contain;
+}
+
+/* Schermata di fine gioco */
+.end-game-screen {
+    background-color:var( --endGame-background-color);
+    /* background-image: var(--gameOver-background-image); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    position: absolute;
+    /* width: 40vw; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.win {
+    background-color: var(--win-background); 
+    /* background-image: url('/images/winAnimeBg.jpg'); */
+}
+
+.end-game-text {
+    color: var(--endGame-text);
+    font-size: 48px;
+    line-height: 1.2;
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 3rem;
+}
+.end-game-text2 {
+    color: var(--win-text);
+    font-size: 48px;
+    line-height: 1.2;
+    font-family: 'Press Start 2P', cursive;
+    margin-bottom: 3rem;
+}
+
+
+button {
+    background-color: var(--button-background);
+    border: 2px solid var(--button-border);
+    color: var(--button-color);
+    font-size: 24px;
+    font-family: 'Darker Grotesque', sans-serif;
+    text-transform: uppercase;
+    padding: 4px 20px 8px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+
+.hidden {
+    display:none;
+}
+
+:root:has(#violet:checked){
+
+    --picker-color:rgba(255,245,243, 0.4);
+    --picker-background: linear-gradient(90deg, rgba(237,203,185,0.5) 0%, rgba(196,174,189,0.5) 100%);
+    --fieldset-color:rgb(79,48,72);
+    --radio-color:rgb(254,248,250);
+    --background-image:  url('./images/backgroundAnime.png');
+    --cell-background:rgba(218,125,66,0.2);
+    --cell-dark-background:rgba(158,62,42);
+    --color:rgb(218,125,66);
+    --color-fieldset:rgb(251,169,97);
+    --picker-background:rgba(59,77,101,0.5);
+    --cell-bomb-background-color:rgba(158,62,42);
+    --endGame-background-color: #364961;
+    --endGame-text:rgb(218,125,66);
+    --button-background:#1a395f;
+    --button-border:rgb(254,248,250);
+    --button-color:rgb(218,125,66); 
+    --end-game-text-win:rgba(11,18,34,0.5);   
+    --button-hover:#8e9dad;
+    --win-background:rgb(221,110,20);
+    --win-text:rgb(254,248,250);
+}

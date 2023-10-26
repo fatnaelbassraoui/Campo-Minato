@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Campo minato</title>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Font -->
+
+  <link
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Merienda:wght@800&family=Playfair+Display:ital,wght@1,500&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@700&family=Press+Start+2P&display=swap"
+    rel="stylesheet" />
+
+  <!-- Foglio di stile -->
+  <link rel="stylesheet" href="style.css" />
+  
+
+<body>
+  <div class="contain">
+    <form class="color-picker" action="">
+      <fieldset>
+        <legend class="">Choose your theme</legend>
+        <label for="theme">Soft</label>
+        <input type="radio"
+        name="violet"
+        id="anime"
+        checked/>
+
+        <label for="theme">Dark</label>
+        <input type="radio"
+        name="violet"
+        id="violet"
+        >
+      </fieldset>
+    </form>
+    <div class="game-container">
+      <!-- Pannello info gioco -->
+      <div class="game-panel">
+        <div class="title">
+          <h1>Campo Minato</h1>
+        </div>
+
+        <!--Punteggio-->
+        <div class="score">
+          <div>SCORE</div>
+          <div
+          class="score-counter"
+          >0000</div>
+        </div>
+      </div>
+
+      <!-- Tabellone di gioco -->
+      <div class="game-board">
+        <div class="grid">
+
+         
+        </div>
+        <!-- Schermata di fine gioco -->
+        <div class="end-game-screen hidden">
+          <h2 class="end-game-text">Game<br />Over</h2>
+          <button class="play-again">Gioca ancora</button>
+        </div>
+      </div>
+    </div>
+</body>
+<script type="text/javascript" src="scipt.js"></script>
+
+</html>
