@@ -29,6 +29,7 @@ const totalCells = 100;
 const totalBombs = 6;
 const maxScore = totalCells - totalBombs;
 const bombsList = [];
+let specialCell;
 let score = 0;
 
 /*random bomb generator*/
@@ -43,6 +44,11 @@ while (bombsList.length < totalBombs) {
 }
 console.log(bombsList);
 
+
+do {
+    specialCell = Math.floor(Math.random() * totalCells) + 1;
+} while (bombsList.includes(specialCell));
+console.log("Special Cell:", specialCell);
 
 
 /*grid*/
@@ -78,7 +84,11 @@ for (let i = 1; i <= totalCells; i++) {
         if (bombsList.includes(i)) {
             cell.classList.add('cell-bomb')
             endGame(false)
-        } else {
+        } else if (specialCell === i) {
+            cell.classList.add('special-cell')
+            endGame(true)
+        }
+        else {
             cell.classList.add('cell-clicked')
             updateScore()
         }

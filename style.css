@@ -216,8 +216,8 @@ h1 {
     background-size: contain;
 }
 
-.cell-bonus{
-    background-image: url('images/bomb.png');
+.special-cell{
+    background-image: url('images/bonusImg.png');
     background-size: contain;
 }
 
