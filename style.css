@@ -18,9 +18,32 @@
     --button-hover:#e1a8bc;
     --win-background:rgb(68, 28, 72);
     --win-text:rgb(254,248,250);
-
-
+    --contain-justify-content:center
 }
+
+  
+  /* Font size variables */
+  h1 {
+    --min: 2em; /* minimum value */
+    --val: 3vw; /* preferred value = 5% viewport width */
+    --max: 4em; /* maximum value */
+  }
+  .score {
+    --min: 1.3em;   /* minimum value */
+    --val: 2.5vw;     /* preferred value = 4% viewport width */
+    --max: 2.25em;  /* maximum value */
+  }
+  .score-counter{
+    --min: 1em;   /* minimum value */
+    --val: 1.5vw; /* preferred value = 2.5% viewport width */
+    --max: 2em; /* maximum value */
+  }
+
+  .picker-text, .theme {
+    --min: 1em;   /* minimum value */
+    --val: 2.5vw; /* preferred value = 2.5% viewport width */
+    --max: 1.5em; /* maximum value */
+  }
 
 * {
     margin: 0;
@@ -46,24 +69,24 @@
     border-radius: 1rem 1rem 1rem 1rem;
     color: var(--color-fieldset);
     font-size: 1.3rem;
-    background: var(--picker-background) ;
+    background: var(--picker-background);
 }
 
 .color-picker input[type='radio']{
     appearance:  none;
-    width: 1.5rem;
-    height: 1.5rem;
-    border: 3px ;
+    width: 1vw;
+    height: 1.8vh;
+    border: 1.5px ;
     border-radius: 50%;
-    outline: 3px solid var(--radio-color);
+    outline:2px solid var(--radio-color);
     outline-offset: 2px ;
     font-family: 'Merienda';
     border-color: var(--radio-color);
-   
 }
 .color-picker input[type='radio']:checked{
     background-color: var(--radio-color);
 }
+
 .color-picker input[type='radio']#anime {
     --radio-color:#BB8196;
 }
@@ -83,11 +106,36 @@
     margin-top: 0;
     background-image: var(--background-image);
   height: 100vh;
-  background-size: cover;
+  background-size:cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: 69%;
+    display: flex;
+    justify-content: var(--contain-justify-content);
     
+}
+
+.score {
+    width: 40vw;
+    /* font-size: 30px; */
+    font-size: clamp(var(--min), var(--val), var(--max));
+    color:  var(--color);
+    display: flex;
+    justify-content:space-around;
+    margin-bottom: 5px;
+    font-family: 'Merienda';
+}
+
+/*Pannello Gioco*/
+h1 {
+    /* font-size: 40px; */
+    font-size: clamp(var(--min), var(--val), var(--max));
+    color: var(--color);
+    font-family: 'Merienda';
+}
+
+.score-counter{
+    font-size: clamp(var(--min), var(--val), var(--max));
 }
 
 .game-container {
@@ -95,50 +143,49 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    z-index: 200;
+    justify-content: center;
+    align-items: center;
+    margin-top: 11%;
+    /* z-index: 200; */
 }
 
-/*Pannello Gioco*/
-h1 {
-    font-size: 40px;
-    color: var(--color);
-    font-family: 'Merienda';
+/* Styles for smaller screens (e.g., mobile) */
+@media (max-width: 768px) {
+    .game-container {
+        margin-top: 50%;
+        width: 100vw;
+    }
+    .score{
+        width: 100vw;
+    }
+    .color-picker input[type='radio']{
+        width: 2vw;
+    height: 1.5vh;
+    border: 2px ;
+    }
 }
 
-.score {
-    width: 32vw;
-    font-size: 30px;
-    color:  var(--color);
-    display: flex;
-    justify-content:space-between;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-family: 'Merienda';
-}
 
 /*Tabellone gioco*/
 
 .game-board {
-    width: 32vw;
+    width: 63%;
     position: relative;
-    margin-left: 10px;
     
 }
 
 .grid {
-    height:75vh;
-    width: 34vw;
+    max-width: 484px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     
 }
 
+
 .cell {
-    height: 2.500em;
-    width: 2.500em;
+    aspect-ratio: 1/1;
+    width: 10%;
     cursor: pointer;
     background-color:var(--cell-background);
    
@@ -159,7 +206,6 @@ h1 {
 }
 
 .cell-clicked {
-    /* background-color: rgb(157, 197, 199); */
     background-color:  rgba(78,45,77,0.8);
     background-size: contain;
 }
@@ -170,16 +216,20 @@ h1 {
     background-size: contain;
 }
 
-/* Schermata di fine gioco */
+.cell-bonus{
+    background-image: url('images/bomb.png');
+    background-size: contain;
+}
+
+/* End game screen */
+
 .end-game-screen {
     background-color:var( --endGame-background-color);
-    /* background-image: var(--gameOver-background-image); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0.8;
     position: absolute;
-    /* width: 40vw; */
     top: 0;
     left: 0;
     right: 0;
@@ -193,7 +243,6 @@ h1 {
 
 .win {
     background-color: var(--win-background); 
-    /* background-image: url('/images/winAnimeBg.jpg'); */
 }
 
 .end-game-text {
@@ -223,9 +272,11 @@ button {
     cursor: pointer;
 }
 
+
 button:hover {
     background-color: var(--button-hover);
 }
+
 
 .hidden {
     display:none;
@@ -240,8 +291,9 @@ button:hover {
     --background-image:  url('./images/backgroundAnime.png');
     --cell-background:rgba(218,125,66,0.2);
     --cell-dark-background:rgba(158,62,42);
-    --color:rgb(218,125,66);
-    --color-fieldset:rgb(251,169,97);
+    /* --color:rgb(218,125,66); */
+    --color:#ffa143;
+    --color-fieldset:#ffa143;
     --picker-background:rgba(59,77,101,0.5);
     --cell-bomb-background-color:rgba(158,62,42);
     --endGame-background-color: #364961;
@@ -253,4 +305,5 @@ button:hover {
     --button-hover:#8e9dad;
     --win-background:rgb(221,110,20);
     --win-text:rgb(254,248,250);
+    --contain-justify-content:end
 }

@@ -16,7 +16,7 @@ const endGameScreen = document.querySelector('.end-game-screen')
 
 /* end game text */
 
-const endGameText = document.querySelector('.end-game-screen')
+const endGameText = document.querySelector('.end-game-text')
 
 /* play again button */
 
@@ -25,7 +25,7 @@ console.log(playAgainButton);
 
 /*info utii alla logica*/
 
-const totalCells = 10;
+const totalCells = 100;
 const totalBombs = 6;
 const maxScore = totalCells - totalBombs;
 const bombsList = [];
@@ -43,6 +43,8 @@ while (bombsList.length < totalBombs) {
 }
 console.log(bombsList);
 
+
+
 /*grid*/
 
 let isCellEven = false;
@@ -58,12 +60,14 @@ for (let i = 1; i <= totalCells; i++) {
     isCellEven = i % 2 === 0;     /*checks whether the cell is even, if it is, assigns it the cell-dark class */
 
 
-    if (isRowEven && isCellEven) cell.classList.add('cell-dark')  /*if the row is even and the cell is even: grey boxif the row is odd and the cell is odd : grey box*/
-    else if (!isRowEven && !isCellEven) cell.classList.add('cell-dark')
+    /*if the row is even and the cell is even or if the row is odd and the cell is odd : add class grey box*/
+    if ((isRowEven && isCellEven) || (!isRowEven && !isCellEven)) cell.classList.add('cell-dark')
 
 
-
-    if (i % 10 === 0) isRowEven = !isRowEven  /*To achieve the chessboard effect, I check that they are at the end of the row. And then I say if the number at the end of the row is divisible by 10, whatever colour the next row had applies its opposite */
+    /*To achieve the chessboard effect, I check that they are at the end of the row. 
+    And then I say if the number at the end of the row is divisible by 10,
+     whatever colour the next row had applies its opposite */
+    if (i % 10 === 0) isRowEven = !isRowEven
 
     /* handling cell clicks*/
 
@@ -78,6 +82,7 @@ for (let i = 1; i <= totalCells; i++) {
             cell.classList.add('cell-clicked')
             updateScore()
         }
+
     })
 
     grid.appendChild(cell)
@@ -88,10 +93,11 @@ for (let i = 1; i <= totalCells; i++) {
 
 //
 const updateScore = () => {
+    //increase the score
     score++;
-
+    //I insert it into the counter
     scoreCounter.innerText = String(score).padStart(5, 0)
-
+    //I check if the user has won
     if (score === maxScore) endGame(true)
 
 }
@@ -99,12 +105,10 @@ const updateScore = () => {
 
 const endGame = (isVictory) => {
     if (isVictory === true) {
-        console.log('you win');
         endGameScreen.classList.add('win')
         endGameText.innerHTML = 'YOU <br> WIN'
         endGameText.classList.add('end-game-text2')
-        console.log('win');
-        endGameScreen.classList.remove('hidden')
+
     } else {
         //if i loose show all the bombs
         revealAllBombs()
@@ -131,3 +135,11 @@ const revealAllBombs = () => {
 playAgainButton.addEventListener('click', () => {
     location.reload()
 })
+
+for (i = 0; i < bombsList.length; i++) {
+
+    if (bombsList[i].type == "checkbox") {
+        let cellBonus = bombsList[2]
+        console.log(cellBonus);
+    }
+}
